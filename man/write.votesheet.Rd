@@ -6,7 +6,7 @@
   to a text file or to standard output.
 }
 \usage{
-write.votesheet(x, file = NULL, keep.b = FALSE, 
+write.votesheet(x, file = NULL, keep.b = TRUE, 
 	aye = "y", no = "n", novote = "-")
 }
 %- maybe also 'usage' for other objects documented here.

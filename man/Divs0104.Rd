@@ -12,9 +12,11 @@
 \format{
 	A list, each component of which corresponds to one House of Commons 
 	division.   Each division is 
-	itself a list, with three components: 
+	itself a list, with four components: 
 	\describe{
 		\item{
+		\code{debate}{Hansard's textual tag for the topic under debate.  
+		Character.}
 		\code{url}}{the URL for the Hansard page containing 
 		the division list.
 		Character.}

@@ -8,7 +8,7 @@
 }
 \usage{data(MPnames0104)}
 \format{
-  A data frame with 654 observations on the following 3 variables.
+  A data frame with 656 observations on the following 3 variables.
   \describe{
     \item{\code{MPname}}{a character vector, names of MPs}
     \item{\code{seatname}}{a character vector, abbreviated constituency name where used}

@@ -34,8 +34,18 @@ find.divisions <- function(session, dates){
                      silent = TRUE)
         close(theURL)
         if (inherits(lines, "try-error")) {
-        	cat("no Hansard page\n")
+##          Try looking in the "bound volumes" of Hansard instead
+            URLstring <- gsub("cm0", "vo0", URLstring)
+            theURL <- url(URLstring)
+            lines <- try(scan(theURL, what = character(0), sep = "\n", 
+                          strip.white = TRUE, blank.lines.skip = TRUE, 
+                          quiet = TRUE),
+                     silent = TRUE)
+            close(theURL)
+            if (inherits(lines,"try-error")) {
+                cat("no Hansard page\n")
         	return(NULL)}
+        }        
         divlines <- grep("Division No", lines)
         if (length(divlines) == 0) {
         	cat("no divisions\n")
@@ -60,7 +70,9 @@ find.divisions <- function(session, dates){
 }
 
 get.divisions <- function(URLs){
-    if (is.matrix(URLs)) URLs <- URLs[, "URL"]
+    if (is.matrix(URLs)) {
+        URLs <- URLs[, "URL"]
+    }
     URLs <- unique(URLs)
     if (length(URLs) > 1){ 
         return(unlist(lapply(URLs, get.divisions), recursive = FALSE))
@@ -143,7 +155,7 @@ get.divisions <- function(URLs){
                 return(NULL)}
             }
         }
-        result[[id]] <- list(url = URLstring, ayes = ayes, noes = noes)}
+        result[[id]] <- list(debate = "", url = URLstring, ayes = ayes, noes = noes)}
     result}
 
 standard.divname <- function(div.id){
@@ -444,7 +456,7 @@ namerules.9203 <- function(MPnames, seatnames){
     sort.division.lists <- function(division, MPnames) {
         if (verbose) {
             assign("counter", counter + 1, inherits = TRUE)
-            cat(counter, " ")
+            cat(counter, "\n")
         }
         ayes <- uniquify.MPnames(division$ayes)
         noes <- uniquify.MPnames(division$noes)
@@ -510,7 +522,7 @@ namerules.9203 <- function(MPnames, seatnames){
     result
 }
     
-write.votesheet <- function(x, file = NULL, keep.b = FALSE,
+write.votesheet <- function(x, file = NULL, keep.b = TRUE,
                              aye = "y", no = "n", novote = "-")
 ##  Keith Poole's OC codes are aye = "1", no = "6", novote = "0"
 {

@@ -27,9 +27,7 @@ write.csv(x, file = "")
 }
 \author{ David Firth }
 \note{ The inverse operation, to read in data from a \code{.csv} file, is 
-	\code{mydata <- read.csv("myfile.csv", row.names = 1) } }
-
- ~Make other sections like Warning with \section{Warning }{....} ~ 
+	\code{mydata <- read.csv("myfile.csv", row.names = 1) } } 
 \seealso{ \code{\link{read.csv}} }
 \examples{
 data(MPnames0104)

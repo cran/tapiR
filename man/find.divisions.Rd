@@ -17,14 +17,15 @@ find.divisions(session, dates)
   to July 16 2003. }
 }
 \details{
-  Requires internet access.
+  Requires internet access.  Expect to see a lot of "404 not found"
+  in the commentary, because \code{find.divisions} will usually
+  try some non-existent URLs; this is of no consequence.
 }
 \value{
 	A two-column character matrix.  
 	Columns are \code{debate} and \code{URL}.  
 	Rows are indexed by division identifiers.
 }
-\references{ ~put references to the literature/web site here ~ }
 \author{ David Firth }
 \seealso{ \code{\link{get.divisions}} }
 \examples{
