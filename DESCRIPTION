@@ -1,5 +1,5 @@
 Package: tapiR
-Version: 0.3
+Version: 0.3-1
 Title: Tools for accessing UK parliamentary information in R
 Author: David Firth and Arthur Spirling
 Maintainer: David Firth <david.firth@nuffield.ox.ac.uk>

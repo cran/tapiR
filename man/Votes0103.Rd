@@ -7,12 +7,13 @@
 }
 \usage{data(Votes0103)}
 \format{
-  A data frame with 653 observations (MPs) on the following 660 
-  variables (659 of which are divisions of the House).
+  The votes are organized as a data frame data frame with 653 
+  observations (MPs) on the following 658 
+  variables (657 of which are divisions of the House).
   \describe{
     \item{\code{party}}{a factor with levels \code{Con} \code{DUP} \code{Ind} \code{IndCon} \code{LD} \code{Lab} \code{PC} \code{SDLP} \code{SNP} \code{UU}}
     \item{\code{div001.010626}}{a factor with levels \code{-} \code{n} \code{y}}
-    \item{...}{658 further such variables, ending with}
+    \item{...}{656 further such variables, ending with}
     \item{\code{div293.030716}}{a factor with levels \code{-} \code{n} \code{y}}
   }
 }
