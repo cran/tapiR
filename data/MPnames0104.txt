@@ -326,7 +326,7 @@
 325 "Kemp, Fraser"             NA       "Lab"   
 326 "Kennedy, Charles"         "Ros"    "LD"    
 327 "Kennedy, Jane"            "Wav"    "Lab"   
-328 "Key, Robert"              "Sal"    "Lab"   
+328 "Key, Robert"              "Sal"    "Con"   
 329 "Khabra, Piara"            NA       "Lab"   
 330 "Kidney, David"            NA       "Lab"   
 331 "Kilfoyle, Peter"          NA       "Lab"   
