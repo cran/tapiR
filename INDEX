@@ -1,0 +1,17 @@
+Divs0103                UK House of Commons Division Lists, 2001-2003
+MPnames0103             Members of the House of Commons, 2001-2003
+Votes0103               Voting on House of Commons Divisions between
+                        June 2001 and May 2003
+collect.MPnames         Gather all MP Names from a Set of Division
+                        Lists
+get.divisions           Fetch House of Commons Division Lists from a
+                        File or from the Web
+make.votesheet          Make a Rectangular Dataset from House of
+                        Commons Division Data
+namerules.9203          Transform MP Names to a Unique Form
+partyhues               Convert Major Party Names to Colours
+standard.divname        Convert Hansard's Online Division Identifiers
+                        to a Standard Format
+uniquify.MPnames        Put MP Names into a Unique Form
+write.csv               Write a Data Frame in .csv Format
+write.votesheet         Output House of Commons Voting Data Compactly
