@@ -1,1 +1,0 @@
-Votes0103 <- read.csv("Votes0103.csv", row.names = 1)

@@ -19,12 +19,12 @@ get.divisions(URLs)
 }
 \value{
   A list, with one component for each division list found.  
-  For the format see \code{\link{Divs0103}}.
+  For the format see \code{\link{Divs0104}}.
 }
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
   Commons, from 1992 to 2003 and beyond.  Submitted for publication.  At
-  \url{http://www.stats.ox.ac.uk/~firth/tapiR/}.
+  \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
 

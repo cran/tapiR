@@ -18,19 +18,19 @@ make.votesheet(divs, MPnames, verbose = TRUE)
   	on standard output. }
 }
 \value{
-  A data frame.  See \code{\link{Votes0103}} for the format.
+  A data frame.  See \code{\link{Votes0104}} for the format.
 }
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
   Commons, from 1992 to 2003 and beyond.  Submitted for publication.  At
-  \url{http://www.stats.ox.ac.uk/~firth/tapiR/}.
+  \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
 \seealso{ \code{\link{write.votesheet}} }
 \examples{
-data(Divs0103)
-data(MPnames0103)
+data(Divs0104)
+data(MPnames0104)
 ##  Do the first three divisions in June 2001:
-make.votesheet(Divs0103[1:3], MPnames0103)
+make.votesheet(Divs0104[1:3], MPnames0104)
 }
 \keyword{ manip }

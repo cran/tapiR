@@ -30,15 +30,15 @@ write.votesheet(x, file = NULL, keep.b = FALSE,
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
   Commons, from 1992 to 2003 and beyond.  Submitted for publication.  At
-  \url{http://www.stats.ox.ac.uk/~firth/tapiR/}.
+  \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
 \note{ Codes used as input to Keith Poole's OC (optimal classification) program are 
 \code{aye = "1", no = "6", novote = "0"} }
 
 \examples{
-data(Votes0103)
-write.votesheet(Votes0103[1:10, 1:10])
+data(Votes0104)
+write.votesheet(Votes0104[1:10, 1:10])
 }
 \keyword{ IO }
 \keyword{ file }

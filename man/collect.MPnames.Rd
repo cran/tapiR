@@ -12,7 +12,7 @@ collect.MPnames(divs, verbose = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{divs}{ A list, each component representng one House of Commons 
-  division.  For the format see \code{\link{Divs0103}}.}
+  division.  For the format see \code{\link{Divs0104}}.}
   \item{verbose}{ Logical.  If \code{TRUE}, progress is reported. }
 }
 \value{
@@ -21,17 +21,17 @@ collect.MPnames(divs, verbose = TRUE)
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
   Commons, from 1992 to 2003 and beyond.  Submitted for publication.  At
-  \url{http://www.stats.ox.ac.uk/~firth/tapiR/}.
+  \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
 \notes{
 This is a utility functon, for use in the construction of a 
-dataset such as \code{\link{MPnames0103}}.  
+dataset such as \code{\link{MPnames0104}}.  
 }
 \seealso{ \code{\link{uniquify.MPnames}} }
 \examples{
-data(Divs0103)
+data(Divs0104)
 ##  Collect all names from the first two divisions in June 2001:
-collect.MPnames(Divs0103[1:2])
+collect.MPnames(Divs0104[1:2])
 }
 \keyword{ manip }

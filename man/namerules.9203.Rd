@@ -21,7 +21,7 @@ namerules.9203(MPnames, seatnames)
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
   Commons, from 1992 to 2003 and beyond.  Submitted for publication.  At
-  \url{http://www.stats.ox.ac.uk/~firth/tapiR/}.
+  \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
 \note{ These are the rules that were used in constructing House of

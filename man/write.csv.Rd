@@ -23,7 +23,7 @@ write.csv(x, file = "")
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
   Commons, from 1992 to 2003 and beyond.  Submitted for publication.  At
-  \url{http://www.stats.ox.ac.uk/~firth/tapiR/}.
+  \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
 \note{ The inverse operation, to read in data from a \code{.csv} file, is 
@@ -32,8 +32,8 @@ write.csv(x, file = "")
  ~Make other sections like Warning with \section{Warning }{....} ~ 
 \seealso{ \code{\link{read.csv}} }
 \examples{
-data(MPnames0103)
-write.csv(MPnames0103)
+data(MPnames0104)
+write.csv(MPnames0104)
 }
 \keyword{ IO }
 \keyword{ file }
