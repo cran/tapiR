@@ -1,19 +1,19 @@
 \name{Votes0103}
 \alias{Votes0103}
 \docType{data}
-\title{ Voting on House of Commons Divisions between June 2001 and May 2003}
+\title{ Voting on House of Commons Divisions between June 2001 and July 2003}
 \description{
   A data frame
 }
 \usage{data(Votes0103)}
 \format{
-  A data frame with 653 observations (MPs) on the following 543 
-  variables (542 of which are divisions of the House).
+  A data frame with 653 observations (MPs) on the following 660 
+  variables (659 of which are divisions of the House).
   \describe{
     \item{\code{party}}{a factor with levels \code{Con} \code{DUP} \code{Ind} \code{IndCon} \code{LD} \code{Lab} \code{PC} \code{SDLP} \code{SNP} \code{UU}}
     \item{\code{div001.010626}}{a factor with levels \code{-} \code{n} \code{y}}
-    \item{...}{540 further such variables, then finally}
-    \item{\code{div181.030508}}{a factor with levels \code{-} \code{n} \code{y}}
+    \item{...}{658 further such variables, ending with}
+    \item{\code{div293.030716}}{a factor with levels \code{-} \code{n} \code{y}}
   }
 }
 \details{

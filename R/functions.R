@@ -114,91 +114,79 @@ collect.MPnames <- function(divs, verbose = TRUE){
     if (verbose) cat("\n")
     as.data.frame(names[selector,])}
 
-uniquify.MPnames <- function(ayes.or.noes, namerules = namerules.9203){
-    MPtitles <- c("Mrs", "Mr", "Miss", "Ms", "Sir",
-                "Dr", "Reverend", "Rev", "RH", "Rt", "Hon", "rh",
-                "rah", "hon", "Professor", "Prof", "The", "Dame")
-             #   "Lady") # not Lord, because of Michael Lord MP
-    ALPHABET <- paste(LETTERS, collapse="")
-    temp <- ayes.or.noes  # just a convenient re-naming
-    #  regularize some HTML oddities
-    temp <- sub("&#214;","O", temp)
-    temp <- sub("&#244;","o", temp)
-    temp <- sub("&#150;","-", temp)
-    #  remove "." everywhere
+"uniquify.MPnames" <-
+    function (ayes.or.noes, namerules = namerules.9203) 
+{
+    if (length(ayes.or.noes) == 0) return(character(0))
+    MPtitles <- c("Mrs", "Mr", "Miss", "Ms", "Sir", "Dr", "Reverend", 
+                  "Rev", "RH", "Rt", "Hon", "rh", "rah", "hon", "Professor", 
+                  "Prof", "The", "Dame")
+    ALPHABET <- paste(LETTERS, collapse = "")
+    temp <- ayes.or.noes
+    temp <- sub("&#214;", "O", temp)
+    temp <- sub("&#244;", "o", temp)
+    temp <- sub("&#150;", "-", temp)
     temp <- gsub("\\.", " ", temp)
-    #  sort out the teller lines
-    #  (put teller names in "Last, First" format)
-    sort.out.tellers <- function(teller.lines){
+    sort.out.tellers <- function(teller.lines) {
         teller.lines <- gsub("\\.", " ", teller.lines)
-        teller.lines <- gsub(paste("[", ALPHABET, "]\ ", sep=""),
-                         " ", teller.lines)
-        teller.lines <- gsub(paste("[", ALPHABET, "]$", sep=""),
-                         " ", teller.lines)
-        for (t in MPtitles){
-            teller.lines <- sub(paste("\ ", t, "\$", sep = ""),
+        teller.lines <- gsub(paste("[", ALPHABET, "] ", sep = ""), 
+                             " ", teller.lines)
+        teller.lines <- gsub(paste("[", ALPHABET, "]$", sep = ""), 
+                             " ", teller.lines)
+        for (t in MPtitles) {
+            teller.lines <- sub(paste(" ", t, "$", sep = ""), 
                                 " ", teller.lines)
-            teller.lines <- sub(paste(t, "\ ", sep = ""),
-                                " ", teller.lines)
+            teller.lines <- sub(paste(t, " ", sep = ""), " ", 
+                                teller.lines)
         }
-        teller.lines <- sub("\ and", " ", teller.lines)
-        teller.lines <- sub("^\ *", "", teller.lines) # strip leading spaces
-        teller.lines <- sub("\ *$", "", teller.lines) # strip trailing spaces
-        teller.lines <- gsub("\ \ +", " ", teller.lines)
-                                        # collapse multiple spaces
-        unlist(lapply(strsplit(teller.lines, " "),
-                  function(line){
-                      if (length(line)==3){
-                          if (length(grep("\\(", line[3])) > 0){
-                              return(paste(
-                                 paste(rev(line[1:2]), collapse = ", "),
+        teller.lines <- sub(" and", " ", teller.lines)
+        teller.lines <- sub("^ *", "", teller.lines)
+        teller.lines <- sub(" *$", "", teller.lines)
+        teller.lines <- gsub("  +", " ", teller.lines)
+        unlist(lapply(strsplit(teller.lines, " "), function(line) {
+            if (length(line) == 3) {
+                if (length(grep("\\(", line[3])) > 0) {
+                    return(paste(paste(rev(line[1:2]), collapse = ", "), 
                                  line[3]))
-                          }
-                          line <-
-                              c(paste(line[1:2], collapse=" "), line[3])
-                      }
-                      paste(rev(line), collapse=", ")}))
+                }
+                line <- c(paste(line[1:2], collapse = " "), line[3])
+            }
+            paste(rev(line), collapse = ", ")
+        }))
     }
     tellerline <- grep("Tellers", temp)
-    if (length(tellerline) > 1) stop("More than one Tellers line")
-    if (length(tellerline) == 1){
-        tellerlines <- temp[(tellerline+1):(tellerline+2)]
+    if (length(tellerline) > 1) 
+        stop("More than one Tellers line")
+    if (length(tellerline) == 1) {
+        tellerlines <- temp[(tellerline + 1):(tellerline + 2)]
         tellerlines <- sort.out.tellers(tellerlines)
-        temp <- c(temp[0:(tellerline-1)], tellerlines)
+        temp <- c(temp[0:(tellerline - 1)], tellerlines)
     }
-    #  remove titles (Mr, hon, etc)
-    for (t in MPtitles){
-        temp <- sub(paste("\ ", t, "\$", sep = ""), " ", temp)
-        temp <- sub(paste(t, "\ ", sep = ""), " ", temp)
+    for (t in MPtitles) {
+        temp <- sub(paste(" ", t, "$", sep = ""), " ", temp)
+        temp <- sub(paste(t, " ", sep = ""), " ", temp)
     }
-    #  remove italic tag and final ")"
     temp <- sub("<[Ii]>", " ", temp)
     temp <- sub("</[Ii]>", "", temp)
     temp <- sub("\\)", "", temp)
-    #  split MP name and seat name
     temp <- strsplit(temp, split = "\\(")
-    MPnames <- sapply(temp, function(x)x[1])
-    seatnames <- sapply(temp, function(x)x[2])
-    #  remove initials
-    MPnames <- gsub(paste("[", ALPHABET, "]\ ", sep=""), " ", MPnames)
-    MPnames <- gsub(paste("[", ALPHABET, "]$", sep=""), " ", MPnames)
-    #  remove "<br>"
+    MPnames <- sapply(temp, function(x) x[1])
+    seatnames <- sapply(temp, function(x) x[2])
+    MPnames <- gsub(paste("[", ALPHABET, "] ", sep = ""), " ", 
+                    MPnames)
+    MPnames <- gsub(paste("[", ALPHABET, "]$", sep = ""), " ", 
+                    MPnames)
     MPnames <- sub("<br>", " ", MPnames)
     MPnames <- sub("<BR>", " ", MPnames)
-    #  regularize white space
-    MPnames <- sub("^\ *", "", MPnames) # strip leading spaces
-    MPnames <- sub("\ *$", "", MPnames) # strip trailing spaces
-    MPnames <- gsub("\ \ +", " ", MPnames) # collapse multiple spaces
-    #  deal with Mc and Mac followed by space
-    MPnames <- sub("Mc\ ", "Mc", MPnames)
-    MPnames <- sub("Mac\ ", "Mac", MPnames)
-    #  various particularisms specified in the "namerules" function
+    MPnames <- sub("^ *", "", MPnames)
+    MPnames <- sub(" *$", "", MPnames)
+    MPnames <- gsub("  +", " ", MPnames)
+    MPnames <- sub("Mc ", "Mc", MPnames)
+    MPnames <- sub("Mac ", "Mac", MPnames)
     adjusted <- namerules(MPnames, seatnames)
     MPnames <- adjusted$MPnames
     seatnames <- adjusted$seatnames
-    #  seat name gets abbreviated to first 3 characters
     seatnames <- substr(seatnames, 1, 3)
-    #  deliver the result as a 2-column matrix
     cbind(MPname = MPnames, seatname = seatnames)
 }
 
@@ -387,43 +375,55 @@ namerules.9203 <- function(MPnames, seatnames){
     list(MPnames = MPnames, seatnames = seatnames)
 }
 
-make.votesheet <- function(divs, MPnames, verbose = TRUE)
+"make.votesheet" <-
+    function (divs, MPnames, verbose = TRUE) 
 {
-    sort.division.lists <- function(division, MPnames)
-    {
+    sort.division.lists <- function(division, MPnames) {
         if (verbose) {
             assign("counter", counter + 1, inherits = TRUE)
-            cat(counter, "\ ")
+            cat(counter, " ")
         }
         ayes <- uniquify.MPnames(division$ayes)
         noes <- uniquify.MPnames(division$noes)
         result <- rep("-", nrow(MPnames))
-        for (i in 1:nrow(ayes)) {
-            row <- ayes[i, ]
-            MPname <- row[1]
-            seatname <- row[2]
-            index <- which(MPname == MPnames$MPname)
-            if (length(index) == 1) result[index] <- "y"
-            if (length(index) > 1){
-                index <- index[which(MPnames$seatname[index] == seatname)]
-                result[index] <- "y"}
-            if (length(index) == 0) {
-                stop(paste("no match for", MPname, seatname))
+        if (!is.null(nrow(ayes))){
+            for (i in 1:nrow(ayes)) {
+                row <- ayes[i, ]
+                MPname <- row[1]
+                seatname <- row[2]
+                index <- which(MPname == MPnames$MPname)
+                if (length(index) == 1) 
+                    result[index] <- "y"
+                if (length(index) > 1) {
+                    index <- index[which(MPnames$seatname[index] == 
+                                     seatname)]
+                    result[index] <- "y"
+                }
+                if (length(index) == 0) {
+                    stop(paste("no match for", MPname, seatname))
+                }
             }
         }
-        for (i in (1:nrow(noes))) {
-            row <- noes[i, ]
-            MPname <- row[1]
-            seatname <- row[2]
-            index <- which(MPname == MPnames$MPname)
-            if (length(index) == 1) result[index] <-
-                if (result[index] == "y") "b" else "n" 
-            if (length(index) > 1){
-                index <- index[which(MPnames$seatname[index] == seatname)]
-                result[index] <-
-                    if (result[index] == "y") "b" else "n"}
-            if (length(index) == 0) {
-                stop(paste("no match for", MPname, seatname))
+        if (!is.null(nrow(noes))){
+            for (i in (1:nrow(noes))) {
+                row <- noes[i, ]
+                MPname <- row[1]
+                seatname <- row[2]
+                index <- which(MPname == MPnames$MPname)
+                if (length(index) == 1) 
+                    result[index] <- if (result[index] == "y") 
+                        "b"
+                    else "n"
+                if (length(index) > 1) {
+                    index <- index[which(MPnames$seatname[index] == 
+                                     seatname)]
+                    result[index] <- if (result[index] == "y") 
+                        "b"
+                    else "n"
+                }
+                if (length(index) == 0) {
+                    stop(paste("no match for", MPname, seatname))
+                }
             }
         }
         result
@@ -432,15 +432,18 @@ make.votesheet <- function(divs, MPnames, verbose = TRUE)
         cat("Processing", length(divs), "divisions \n")
         counter <- 0
     }
-    result <- lapply(divs, function(div){
-                                 sort.division.lists(div, MPnames)})
+    result <- lapply(divs, function(div) {
+        sort.division.lists(div, MPnames)
+    })
     result <- as.data.frame(result)
     party <- MPnames$party
     result <- cbind(party, result)
-    seatnames <- paste("(", as.character(MPnames$seatname), ")", sep="")
+    seatnames <- paste("(", as.character(MPnames$seatname), ")", 
+                       sep = "")
     seatnames <- sub("\\(NA\\)", "", seatnames)
     row.names(result) <- paste(MPnames$MPname, seatnames)
-    if (verbose) cat("\n")
+    if (verbose) 
+        cat("\n")
     result
 }
     
