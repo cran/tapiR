@@ -4,6 +4,8 @@ Votes0103               Voting on House of Commons Divisions between
                         June 2001 and July 2003
 collect.MPnames         Gather all MP Names from a Set of Division
                         Lists
+find.divisions          Locate division lists for the UK House of
+                        Commons
 get.divisions           Fetch House of Commons Division Lists from a
                         File or from the Web
 make.votesheet          Make a Rectangular Dataset from House of

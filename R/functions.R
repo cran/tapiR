@@ -1,5 +1,68 @@
+find.divisions <- function(session, dates){
+    session <- if (session < 1000) {
+    	paste("0", session, sep = "")} else as.character(session)
+    URLs <- character(0)
+    tags <- character(0)
+    URLtemplate <-
+        "http://www.publications.parliament.uk/pa/cm20session/cmhansrd/cm0ymmdd/debindx/ymmdd-x.htm"
+    standard.format <- function(date){
+            if (date < 100000) paste("0", date, sep = "") else date
+    }
+    day <- function(date){
+        date - 100*round(date/100)
+    }
+    month <- function(date){
+        nodays <- round(date/100)
+        nodays - 100*round(nodays/100)
+    }
+    is.valid <- function(date){
+        month <- month(date)
+        day <-  day(date)
+        maxdays <- c(31,29,31,30,31,30,31,31,30,31,30,31)
+        {(month > 0) && (month < 13) && (day > 0) && 
+            (day < (1 + maxdays[month]))}
+    }
+    dates <- dates[sapply(dates, is.valid)]
+    do.one.date <- function(date){
+        URLstring <- gsub("session", session, URLtemplate)
+        URLstring <- gsub("ymmdd", as.character(date), URLstring)
+        theURL <- url(URLstring)
+        cat(standard.format(date), ": ", sep="")
+        lines <- try(scan(theURL, what = character(0), sep = "\n", 
+                          strip.white = TRUE, blank.lines.skip = TRUE, 
+                          quiet = TRUE),
+                     silent = TRUE)
+        close(theURL)
+        if (inherits(lines, "try-error")) {
+        	cat("no Hansard page\n")
+        	return(NULL)}
+        divlines <- grep("Division No", lines)
+        if (length(divlines) == 0) {
+        	cat("no divisions\n")
+        	return(NULL)} else cat(length(divlines), "divisions\n")
+        lines <- lines[grep("Division No", lines)]
+        tail <- paste("debindx/", date, "-x.htm", sep="")
+        URLroot <- sub(tail, "", URLstring)
+        lines <- gsub("<A.*debtext", "debtext", lines)
+        debate <- sub("[^\\(]*\\(", "", lines) 
+        debate <- sub("\\)[^\\)]*$", "", debate)
+        divIDs <- gsub("^.*\\#", "", lines)
+        divIDs <- sapply(sapply(strsplit(divIDs, split = "\""), 
+        	function(x)x[1]), standard.divname)
+        lines <- gsub("\\#.*", "", lines)
+        URL <- paste(URLroot, lines, sep="")
+        names(debate) <- names(URL) <- divIDs
+        cbind(debate, URL)
+    }
+    result <- lapply(dates, do.one.date)
+    names(result) <- sapply(dates, standard.format)
+    do.call("rbind", result)
+}
+
 get.divisions <- function(URLs){
-    if (length(URLs) > 1){  ## if argument is a *vector* of URLs
+    if (is.matrix(URLs)) URLs <- URLs[, "URL"]
+    URLs <- unique(URLs)
+    if (length(URLs) > 1){ 
         return(unlist(lapply(URLs, get.divisions), recursive = FALSE))
     }
     URLstring <- URLs
