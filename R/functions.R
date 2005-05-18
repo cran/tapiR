@@ -53,7 +53,7 @@ find.divisions <- function(session, dates){
         lines <- lines[grep("Division No", lines)]
         tail <- paste("debindx/", date, "-x.htm", sep="")
         URLroot <- sub(tail, "", URLstring)
-        lines <- gsub("<A.*debtext", "debtext", lines)
+        lines <- gsub("<[aA].*debtext", "debtext", lines)
         debate <- sub("[^\\(]*\\(", "", lines) 
         debate <- sub("\\)[^\\)]*$", "", debate)
         divIDs <- gsub("^.*\\#", "", lines)
@@ -201,6 +201,7 @@ collect.MPnames <- function(divs, verbose = TRUE){
     temp <- sub("&#214;", "O", temp)
     temp <- sub("&#244;", "o", temp)
     temp <- sub("&#150;", "-", temp)
+    temp <- sub("&#039;", "'", temp)
     temp <- gsub("\\.", " ", temp)
     sort.out.tellers <- function(teller.lines) {
         teller.lines <- gsub("\\.", " ", teller.lines)

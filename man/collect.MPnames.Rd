@@ -12,7 +12,7 @@ collect.MPnames(divs, verbose = TRUE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{divs}{ A list, each component representng one House of Commons 
-  division.  For the format see \code{\link{Divs0104}}.}
+  division.  For the format see \code{\link{Divs0105}}.}
   \item{verbose}{ Logical.  If \code{TRUE}, progress is reported. }
 }
 \value{
@@ -26,12 +26,12 @@ collect.MPnames(divs, verbose = TRUE)
 \author{ David Firth }
 \notes{
 This is a utility functon, for use in the construction of a 
-dataset such as \code{\link{MPnames0104}}.  
+dataset such as \code{\link{MPnames0105}}.  
 }
 \seealso{ \code{\link{uniquify.MPnames}} }
 \examples{
-data(Divs0104)
+data(Divs0105)
 ##  Collect all names from the first two divisions in June 2001:
-collect.MPnames(Divs0104[1:2])
+collect.MPnames(Divs0105[1:2])
 }
 \keyword{ manip }

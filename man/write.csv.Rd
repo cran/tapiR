@@ -30,8 +30,8 @@ write.csv(x, file = "")
 	\code{mydata <- read.csv("myfile.csv", row.names = 1) } } 
 \seealso{ \code{\link{read.csv}} }
 \examples{
-data(MPnames0104)
-write.csv(MPnames0104)
+data(MPnames0105)
+write.csv(MPnames0105)
 }
 \keyword{ IO }
 \keyword{ file }

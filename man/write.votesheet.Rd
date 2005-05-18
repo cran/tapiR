@@ -37,8 +37,8 @@ write.votesheet(x, file = NULL, keep.b = TRUE,
 \code{aye = "1", no = "6", novote = "0"} }
 
 \examples{
-data(Votes0104)
-write.votesheet(Votes0104[1:10, 1:10])
+data(Votes0105)
+write.votesheet(Votes0105[1:10, 1:10])
 }
 \keyword{ IO }
 \keyword{ file }

@@ -19,7 +19,7 @@ get.divisions(URLs)
 }
 \value{
   A list, with one component for each division list found.  
-  For the format see \code{\link{Divs0104}}.
+  For the format see \code{\link{Divs0105}}.
 }
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 

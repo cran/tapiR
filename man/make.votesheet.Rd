@@ -18,7 +18,7 @@ make.votesheet(divs, MPnames, verbose = TRUE)
   	on standard output. }
 }
 \value{
-  A data frame.  See \code{\link{Votes0104}} for the format.
+  A data frame.  See \code{\link{Votes0105}} for the format.
 }
 \references{
   Firth, D and Spirling, A (2003) Divisions of the United Kingdom House of 
@@ -28,9 +28,9 @@ make.votesheet(divs, MPnames, verbose = TRUE)
 \author{ David Firth }
 \seealso{ \code{\link{write.votesheet}} }
 \examples{
-data(Divs0104)
-data(MPnames0104)
+data(Divs0105)
+data(MPnames0105)
 ##  Do the first three divisions in June 2001:
-make.votesheet(Divs0104[1:3], MPnames0104)
+make.votesheet(Divs0105[1:3], MPnames0105)
 }
 \keyword{ manip }
