@@ -26,9 +26,9 @@ A character matrix, with one row for each element of \code{ayes.or.noes}.
 Two columns, \code{MPname} and \code{seatname}.
 }
 \author{ David Firth }
-\notes{
+\note{
   This function would not normally be called by the user
-  of \code{\link{tapiR}}; 
+  of the \emph{tapiR} package; 
   it is used internally by \code{\link{collect.MPnames}}
   and \code{\link{make.votesheet}}.
 }

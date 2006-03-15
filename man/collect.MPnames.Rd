@@ -24,7 +24,7 @@ collect.MPnames(divs, verbose = TRUE)
   \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
-\notes{
+\note{
 This is a utility functon, for use in the construction of a 
 dataset such as \code{\link{MPnames0105}}.  
 }
