@@ -33,12 +33,17 @@ write.votesheet(x, file = NULL, keep.b = TRUE,
   \url{http://www.warwick.ac.uk/go/tapir}.
 }
 \author{ David Firth }
-\note{ Codes used as input to Keith Poole's OC (optimal classification) program are 
-\code{aye = "1", no = "6", novote = "0"} }
+\note{ Codes used as input to Keith Poole's OC (optimal classification)
+  program are \code{aye = "1", no = "6", novote = "0"} }
 
 \examples{
-data(Votes0105)
+\dontrun{
+## requires file "Votes0105.csv", downloadable from the URL above.
+Votes0105 <- read.csv("Votes0105.csv")
+row.names(Votes0105) <- Votes0105$X
+Votes0105$X <- NULL
 write.votesheet(Votes0105[1:10, 1:10])
+}
 }
 \keyword{ IO }
 \keyword{ file }
